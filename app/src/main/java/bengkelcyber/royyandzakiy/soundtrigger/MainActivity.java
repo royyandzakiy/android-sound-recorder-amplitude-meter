@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private MediaRecorder mRecorder;
     private TextView amplitudeValue;
     private ConstraintLayout mainLayout;
+    private static double MAX_AMPLITUDE_THRESHOLD = 60.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateAmplitude(double amplitudeDb) {
         amplitudeValue.setText(String.valueOf(amplitudeDb) + " dB");
-        if (amplitudeDb > 70) {
+        if (amplitudeDb > MAX_AMPLITUDE_THRESHOLD) {
             triggered();
         } else {
             mainLayout.setBackgroundColor(Color.WHITE);
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void triggered() {
+        // change trigger with your needs.
         mainLayout.setBackgroundColor(Color.RED);
     }
 
